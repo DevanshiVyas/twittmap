@@ -4,7 +4,7 @@ from elasticsearch import Elasticsearch, exceptions
 app = Flask(__name__)
 es = Elasticsearch()
 
-keywords = ["trump", "sanders", "election", "presendential"]
+keywords = ['movies','sports','music','finance','technology','fashion','science','travel','health','cricket','india']
 
 @app.route('/')
 def index():
@@ -15,10 +15,15 @@ def index():
             "query": {"match": {"text": query}},
             "size": 750 # max document size
         })
-    coords = []
+    coords, results = [], []
     if res["hits"]["hits"]:
         coords = [r["_source"]["coordinates"] for r in res["hits"]["hits"]]
-    return render_template("index.html", coords=coords, keywords=keywords, query=query)
+        results = [r["_source"]["text"] for r in res["hits"]["hits"]]
+    return render_template("index.html",
+                           coords=coords,
+                           keywords=keywords,
+                           query=query,
+                           results=results)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -45,6 +45,12 @@
       <hr />
       <h2>Showing results for</h2>
       <h4>{{ query }}</h4>
+      <h5>Count: {{ results|length }}</h5>
+      <ul>
+        {% for r in results %}
+        <li>{{ r }}</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
   <script type="text/javascript">
