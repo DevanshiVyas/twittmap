@@ -4,5 +4,5 @@ itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
 urllib3==1.14
-Werkzeug==0.11.4
+Werkzeug==0.15.3
 wheel==0.29.0
